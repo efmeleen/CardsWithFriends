@@ -1,0 +1,171 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');*/
+:root{
+    --primary-font: 'Raleway', sans-serif;
+    --card-width: 100px;
+    --card-height: 145px;
+    --card-receptacle-padding: 10px;
+    --num-cards: 7;
+}
+
+body{
+    height:100vh;
+    margin:0px;
+    background-color: #bbbbbb;
+    font-family: var(--primary-font)
+}
+
+main{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position:relative; /* Allows absolute elements to be hidden overflow*/
+    /* border:1px solid red; */
+}
+
+#start-box, #game-box{
+    position:absolute;
+    border: 3px solid green;
+    /* width: 500px; */
+    transition: opacity 0.5s ease-out,
+                visibility 0.5s,
+                transform 0.5s ease-in-out;
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);; */
+}
+
+#game-box{
+    height:100%;
+    width:80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-holder, .game-code-entry-holder, .start-button-holder{
+    border: 3px solid red
+}
+
+.title, #game-code-entry, #start-button{
+    border: 3px solid blue;
+    margin:10px auto 10px auto;
+    display:block;
+    text-align: center;
+}
+
+#opponent-game-container{
+    flex-grow: 3;
+}
+
+#middle-game-container{
+    flex-grow: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#player-game-container{
+    flex-grow: 3;
+}
+
+#opponent-game-container, #middle-game-container, #player-game-container{
+    border: 3px dashed darkblue;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#card-area-container{
+    display:flex;
+    flex-direction: row;
+    width:50%;
+}
+
+#deck-container, #discard-container{
+    border:3px solid green;
+    height: calc(var(--card-height) + 2*var(--card-receptacle-padding));
+    width: calc(var(--card-width) + 2*var(--card-receptacle-padding));
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*flexbox card reveal solution*/
+/* #player-hand{
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.card-container{
+    border:1px solid black;
+    cursor: pointer;
+    overflow:hidden;
+
+    min-width: 0;
+
+    transition: min-width 0.1s;
+}
+
+.card-container:last-child, .card-container:hover{
+    /* overflow:visible; */ /*This is how I did it before, but doing min-width allows animated transition*/
+    /*min-width: var(--card-width)
+}*/
+
+#player-hand{
+    display:grid;
+    /* grid-template-columns: repeat(20, calc(var(--card-width) / 3)); */
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    border: 3px solid red;
+    min-width: 0;
+    max-width: 90%;
+}
+
+.card-container{
+    position:relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: transform 0.1s linear;
+    transform-origin: bottom;
+
+    max-width: max-content;
+    
+    /* border: 3px solid green; */
+}
+
+#player-hand .card-container:hover{
+    /* z-index:2; */
+    transform: translateY(calc(var(--card-width)/-4))
+               /* translateX(calc(var(--card-width)/4)) */
+               rotate(-15deg);
+}
+
+/* .card-container:last-child{
+    transform: none;
+} */
+
+.card-img{
+    height: var(--card-height);
+    width: var(--card-width);
+}
+
+/* Utility Classes for Hiding Elements*/
+.vanished{
+    opacity: 0%;
+    visibility: hidden;
+    /* display: none; */
+}
+
+.slid-up{
+    transform: translateY(-200vh);
+}
+
+.slid-down{
+    transform: translateY(200vh);
+}
